@@ -1,0 +1,40 @@
+{
+    "text": [
+        {
+            "name": "Personen",
+            "data": "Maximilian Wolf 2014-07-04 1\nEmilia Schäfer 2014-06-29 1\nMarie Becker 2014-06-26 1\nAlexander Richter 2014-07-02 1\nMaria Koch 2014-07-01 1\nCharlotte Hoffmann 2014-06-28 1\nPaul Bauer 2014-06-30 1\nSophie Schulz 2014-06-27 1\nJohanna Neumann 2014-07-06 1\nAnton Schröder 2014-07-05 1\nSophia Schwarz 2014-07-07 1\nLuise Klein 2014-07-03 1\nMarija Simonsen 2013-07-25 1\nLeonard Pakovski 2013-10-25 1\nMathias Lutzenberger 2013-09-08 1\nNatthida Kohler 2012-05-19 1\nAlice Kiem 2013-06-26 1\nLisa Ibragimova 2013-01-17 1\nTarana Najjar 2012-08-08 2\nEnis Malik 2012-03-03 2\nJowita Kowalska 2011-02-15 2\nElvedin Haddad 2012-05-04 2\nZelimir Blasevic 2009-03-18 2\nAbdul Boulos 2011-10-01 2\nHilal Aslan 2011-07-27 2\nRachida Mansour 2012-01-01 2\nBarakah Mifsud 2011-08-08 2\nYue You Hong Lu 2009-06-06 2\nXenia Nikopolid 2010-03-26 2\nJoao Sousa Castro 2010-07-27 2\nManuela Schultze 2010-10-11 2\nAnna Silva de Barbossa 2010-09-05 2\nLeonardo Rocha Mela 2010-12-31 2\nVjenceslav Paviciz 2010-04-12 2\nElke Meyer 2010-04-13 2\nJanie Escobedo 2010-04-12 2\nLynda Podany 2009-07-20 2\nXenia Nikopolid 2010-03-26 3\nElke Meyer 2010-04-13 3\nJoao Sousa Castro 2010-07-27 3\nAnna Silva de Barbossa 2010-09-05 3\nManuela Schultze 2010-10-11 3\nLeonardo Rocha Mela 2010-12-31 3\nVjenceslav Paviciz 2010-04-12 3\nGudrun Mühlenstein 2010-11-11 3\nAngelika Adamski 2011-05-05 3\nIsabel Shockley 2011-10-29 3\nPat Bruder 2011-11-11 3\nPius Paternoster 2011-04-30 3\nEarline Tote 2011-03-23 3\nDiana Melgarejo 2011-12-25 3\nWilhelm Wandel 2010-09-25 3\nBruno Bronto 2010-12-12 3\nRoseann Galeano 2010-10-28 3\nAshlee Lochen 2009-06-19 4\nHarriett Callarman 2008-06-29 4\nGertrude Kirschman 2008-05-05 4\nAudrey Fazio 2008-04-25 4\nJillian Dearman 2008-03-17 4\nBeverly Minvielle 2009-06-03 4\nLenora Soukkhavong 2008-05-06 4\nAllyson Risbeck 2009-05-27 4\nCorrine Shuemaker 2008-07-17 4\nElnora Laguer 2008-08-29 4\nJaime Perham 2008-05-05 4\nFrancesca Shelman 2008-08-08 4\nRena Kirchmann 2007-12-17 4\nImelda Sheedy 2008-11-04 4\nLee Gamotan 2008-10-30 4\nToni Leithauser 2008-01-21 4"
+        },
+        {
+            "name": "SQL",
+            "data": "CREATE TABLE \"schueler\" (\n \"id\" INTEGER NOT NULL UNIQUE,\n \"vorname\" TEXT NOT NULL,\n \"nachname\" TEXT NOT NULL,\n \"geburtsdatum\" TEXT,\n \"klasse_id\" INTEGER NOT NULL,\n PRIMARY KEY(\"id\" AUTOINCREMENT),\n FOREIGN KEY(\"klasse_id\") REFERENCES \"klassen\"(\"id\")\n);"
+        },
+        {
+            "name": "EMAIL",
+            "data": "Lorem ipsum dolor sit amet, consetetur ekoprasetyo.crb@outlook.com sadipscing elitr,\nsed diam nonumy eirmod tempor invidunt db.maulana@gmail.com ut labore et dolore magna\naliquyam erat, sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor firmansyah1404@gmail.com\ninvidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero donny_tri_wardono@yahoo.com\neos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata\nsanctus est Lorem ipsum dolor sit amet."
+        }
+    ],
+    "code": [
+        {
+            "name": "suchen-ersetzen",
+            "data": "/*suchen und ersetzen*/\nvar newDATA = DATA.replaceAll('alterText', 'neuerText');\nRESULT.setValue(newDATA);"
+        },
+        {
+            "name": "daten-liste",
+            "data": "/*Daten in Liste umwandeln*/\nvar DATA_Array = DATA.split('\\n'); //trennt den Text nach einem Zeilenumbruch\nvar newData = '';DATA_Array.forEach(element =>{\nnewData += element + ', '; //fügt anstatt des Zeilenumbruchs ein , ein\n});\nRESULT.setValue(newData);"
+        },
+        {
+            "name": "zahlen-liste",
+            "data": "/*Zahlen in Listen manipulieren*/\nvar DATA_Array = DATA.split('Trennzeichen');\nvar finalData = '';\nDATA_Array.forEach(element=>{\n//sucht die letzte Zahl am Ende jeder Zeile\nvar number = element.match(/\\d$/g);\nif(number != null) number = parseInt(number[0]);\nelse number = '';\n//ersetzt die letzte Zahl am Ende jeder Zeile mit der Zahl +1\nfinalData += element.replaceAll(/\\d$/g, (number+1));\n});\nRESULT.setValue(finalData);"
+        },
+        {
+            "name": "email-adressen",
+            "data": "/*E-Mail Adressen*/\n//teilt EINE E-Mailadresse: richar@gmail.com -> richard, gmail.com\nvar newData = DATA.match(/([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)/);\n//sucht aus einem Text alle E-Mailadressen und listet diese auf\nvar newData = DATA.match(/([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)/g);\nRESULT.setValue(newData);"
+        }
+    ],
+    "info": [
+        {
+            "name": "suchen-ersetzen",
+            "data": "Auch RegExp Ausdrücke kann man in Javascript nutzen:<br><span class='fw-bold'>.replaceAll(/^/g, 'neu')</span> :findet den Anfang eines Textes<br><span class='fw-bold'>.replaceAll(/$/g, 'neu')</span> :findet das Ende eines Textes"
+        }
+    ]
+}

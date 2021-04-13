@@ -1,0 +1,16 @@
+/* */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+#output{
+    /*min-height: 300px;*/
+    border: 1px solid lightgrey;
+}
+#console{
+    /*min-height: 300px;*/
+    border: 1px solid lightgrey;
+}
+
+.CodeMirror { height: 100%; }

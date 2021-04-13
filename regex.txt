@@ -1,0 +1,19 @@
+var resetData = DATA; // ("Maximilian","Wolf","2014-07-04",1),
+resetData = resetData.replaceAll(/^\("/g,""); //entfernt in der ersten Zeile ("
+resetData = resetData.replaceAll(/\n\("/g,"\n"); //entfernt am anfang jeder Zeile ("
+resetData = resetData.replaceAll(/\),\n/g,"\n"); //entfernt alle ), am Ende der Zeile
+resetData = resetData.replaceAll(/","/g," "); //entfernt alle ","
+resetData = resetData.replaceAll(/",/g," "); //entfernt alle ",0-9
+//RESULT.setValue(resetData);
+
+var newData = DATA; // Maximilian Wolf 2014-07-04 1
+newData = newData.replaceAll(/^/g,'("'); //fügt in der ersten Zeile (" hinzu
+newData = newData.replaceAll(/\n/g,'\n("'); //fügt jeder Zeile (" hinzu
+newData = newData.replaceAll(/\n/g,"),\n"); //fügt am Ende jeder Zeile ), hinzu
+newData = newData.replaceAll(/[ ](?=[A-Z])/g,'","'); //fügt zwischen Vor- und Nachnamen "," hinzu
+newData = newData.replaceAll(/[ ](?=[0-9]{4})/g,'","'); //fügt zwischen Nachname und Jahr "," hinzu
+newData = newData.replaceAll(/[ ](?=[0-9]{1})/g,'",'); //fügt zwischne Geburtsdatum und Jahrgangsstufe ", hinzu
+newData = newData.replaceAll(/(\),$)/g,''); //entfernt am Ende der Liste das letzte ,
+var newNumber = parseInt(newData.match(/([0-9]$)/g)[0])+1;
+newData = newData.replaceAll(/([0-9]$)/g, newNumber); //entfernt am Ende der Liste das letzte ,
+RESULT.setValue(newData);

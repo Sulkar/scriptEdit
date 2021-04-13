@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>ScriptEdit</title>
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+    </link>
+    <link rel="stylesheet" href="css/scriptEdit.css">
+</head>
+
+<body>
+    <div class="container-fluid" style="height: 100%;">
+
+        <!-- Header -->
+        <div class="row" style="height: 5%;">
+            <div class="col">
+                <h4 class="font-monospace" id="headerSql" style="margin-top: 0.3em;">ScriptEdit</h4>
+            </div>
+        </div>
+
+
+        <!-- Editors + Info -->
+        <div class="row" style="height: 95%;">
+
+            <!-- Left Columns -->
+            <div class="col-md-6" style="height: 100%;">
+                <!-- Codemirror for javascript -->
+                <div class="row" style="height: 50%;">
+                    <div style="height: 5%; margin-bottom: 0; display: inline;">
+                        <span class="font-monospace fw-bold fs-5">Javascript&nbsp;&nbsp;&nbsp;</span>
+                        <span id="btnUndo" class="font-monospace "
+                            style="cursor: pointer; color: #0d6efd; user-select: none;">zurück</span>
+                        <span class="font-monospace " style="user-select: none;">&nbsp;-&nbsp;</span>
+                        <span id="btnRedo" class="font-monospace "
+                            style="cursor: pointer; color: #0d6efd; user-select: none;">vor</span>
+                    </div>
+
+                    <div style="position: relative;">
+                        <button id="btnRunCode" type="button" class="btn btn-success"
+                            style="position: absolute; right: 1em; z-index: 10;">run</button>
+                    </div>
+                    <div id="myCodemirrorJS" style="height: 90%;"></div>
+                </div>
+                <!-- Codemirror for data -->
+                <div class="row" style="height: 50%;">
+                    <p class="font-monospace fw-bold fs-5" style="height: 5%; margin-bottom: 0;">DATA</p>
+                    <div id="myCodemirrorData" style="height: 90%;"></div>
+                </div>
+            </div>
+
+            <!-- Right Columns -->
+            <div class="col-md-6" style="height: 100%;">
+                <!-- Info -->
+                <div class="row" style="height: 50%;">
+
+                    <div class="col" style="height: 100%; overflow-y: scroll;">
+                        <div class="row">
+                            <p class="font-monospace fw-bold fs-5" style="height: 5%; ">Infos</p>
+                        </div>
+                        <div class="row">
+                            <p>ScriptEdit ist ein Javascript Editor, mit dem man Text manipulieren kann.</p>
+                            <div class="col">
+                                <div class="list-group">
+                                    <button type="button" id="btnList1-1" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        suchen und ersetzen
+                                    </button>
+                                    <button type="button" id="btnList1-2" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        Daten in Liste umwandeln
+                                    </button>
+                                    <button type="button" id="btnList1-3" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        Zahlen in Listen manipulieren
+                                    </button>
+                                    <button type="button" id="btnList1-4" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        E-Mail Adressen
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="list-group">
+                                    <button type="button" id="btnList2-1" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        Beispieldaten: Personen
+                                    </button>
+                                    <button type="button" id="btnList2-2" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        Beispieldaten: SQL Befehl
+                                    </button>
+                                    <button type="button" id="btnList2-3" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        Beispieldaten: E-Mail
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px; ">
+                            <div class="col">
+                                <div id="myError" class="alert alert-danger" role="alert" style="display:none;">
+                                    test
+                                </div>
+                                <div id="myInfo" class="alert alert-info" role="alert">
+                                    Klicke auf einen der Buttons, um Beispielcode in den Editor zu laden.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Codemirror for result -->
+                <div class="row" style="height: 50%;">
+                    <p class="font-monospace fw-bold fs-5" style="height: 5%; margin-bottom: 0;">RESULT</p>
+                    <div id="myCodemirrorResult" style="height: 90%;"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.min.js"></script>
+    <script src="js/beautifier.js"></script>
+
+    <script type="text/javascript" src="js/scriptEdit.js"></script>
+
+
+</body>
+
+</html>
