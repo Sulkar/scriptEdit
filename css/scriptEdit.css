@@ -2,6 +2,7 @@
 html, body {
     height: 100%;
     margin: 0;
+    overflow: hidden;
   }
 
 #output{
@@ -14,3 +15,25 @@ html, body {
 }
 
 .CodeMirror { height: 100%; }
+
+.highlight{
+    background-color: #FFFF00
+}
+
+.dropdown-flags-button:focus{
+    background-color: white;
+}
+.dropdown-flags-button:active{
+    background-color: white;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #6c757d;
+    text-decoration: none;
+    background-color: #fff;
+}
+.btn-outline-secondary:hover {
+    color: #6c757d;
+    background-color: #fff;
+    border-color: #6c757d;
+}

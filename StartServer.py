@@ -5,8 +5,8 @@ import os
 import webbrowser
 
 os.chdir("./")
-port = 8081
-print("Webseite kann unter folgender URL aufgerufen werden: http://localhost:8081/")
+port = 8082
+print("Webseite kann unter folgender URL aufgerufen werden: http://localhost:8082/")
 
 http.server.SimpleHTTPRequestHandler.extensions_map[".wasm"] = "application/wasm"
 
@@ -19,7 +19,7 @@ print(
     % http.server.SimpleHTTPRequestHandler.extensions_map[".wasm"]
 )
 
-webbrowser.open('http://localhost:8081/')
+webbrowser.open('http://localhost:8082/')
 
 httpd.serve_forever()
 

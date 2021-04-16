@@ -16,19 +16,23 @@
     "code": [
         {
             "name": "suchen-ersetzen",
-            "data": "/*suchen und ersetzen*/\nvar newDATA = DATA.replaceAll('alterText', 'neuerText');\nRESULT.setValue(newDATA);"
+            "data": "/*suchen und ersetzen*/\nvar meinText = 'Mein Name ist Richard und ich bin 25 Jahre alt.';\nmeinText = meinText.replaceAll('25', '39');\nRESULT.setValue(meinText);"
         },
         {
             "name": "daten-liste",
-            "data": "/*Daten in Liste umwandeln*/\nvar DATA_Array = DATA.split('\\n'); //trennt den Text nach einem Zeilenumbruch\nvar newData = '';DATA_Array.forEach(element =>{\nnewData += element + ', '; //fügt anstatt des Zeilenumbruchs ein , ein\n});\nRESULT.setValue(newData);"
+            "data": "/*Daten in Liste umwandeln\nbenötigt Beispieldaten: Personen*/\nvar DATA_Array = DATA.split('\\n'); //trennt den Text nach einem Zeilenumbruch\nvar newData = '';DATA_Array.forEach(element =>{\nnewData += element + ',\\n'; //fügt anstatt des Zeilenumbruchs ein , ein\n});\nRESULT.setValue(newData);"
         },
         {
             "name": "zahlen-liste",
-            "data": "/*Zahlen in Listen manipulieren*/\nvar DATA_Array = DATA.split('Trennzeichen');\nvar finalData = '';\nDATA_Array.forEach(element=>{\n//sucht die letzte Zahl am Ende jeder Zeile\nvar number = element.match(/\\d$/g);\nif(number != null) number = parseInt(number[0]);\nelse number = '';\n//ersetzt die letzte Zahl am Ende jeder Zeile mit der Zahl +1\nfinalData += element.replaceAll(/\\d$/g, (number+1));\n});\nRESULT.setValue(finalData);"
+            "data": "/*Zahlen in Listen manipulieren\nbenötigt Beispieldaten: Personen*/\nvar DATA_Array = DATA.split('\\n');\nvar finalData = '';\nDATA_Array.forEach(element=>{\n//sucht die letzte Zahl am Ende jeder Zeile\nvar number = element.match(/\\d+$/g);\nif(number != null) number = parseInt(number[0]);\nelse number = '';\n//ersetzt die letzte Zahl am Ende jeder Zeile mit der Zahl +1\nfinalData += element.replaceAll(/\\d$/g, (number+1) + '\\n');\n});\nRESULT.setValue(finalData);"
         },
         {
             "name": "email-adressen",
-            "data": "/*E-Mail Adressen*/\n//teilt EINE E-Mailadresse: richar@gmail.com -> richard, gmail.com\nvar newData = DATA.match(/([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)/);\n//sucht aus einem Text alle E-Mailadressen und listet diese auf\nvar newData = DATA.match(/([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)/g);\nRESULT.setValue(newData);"
+            "data": "/*E-Mail Adressen*/\n//sucht und teilt EINE E-Mailadresse: richar@gmail.com -> richard, gmail.com\nvar email = 'Das ist meine neue E-Mailadresse: Super.Richard@example.org';\nvar newData = email.match(/([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+\\.[a-zA-Z0-9_-]+)/);\nRESULT.setValue(newData);"
+        },
+        {
+            "name": "vorname-nachname",
+            "data": "/*Vorname und Nachname filtern*/\n// [\\wöäü] = ein Wort [a-zA-Z] und Umlaute\n// /i = case insensitive\n\nvar ganzerName = 'Maximilian Wölfl';\n//gibt einen Array mit [ganzerName, Zeilenanfang, Vorname] zurück\nvar vorname = ganzerName.match(/(^)([\\wöäü]+)/i)[2];\n//gibt einen Array mit [ganzerName, Leerzeichen, Nachname] zurück\nvar nachname = ganzerName.match(/(\\s)([\\wöäü]+)/i)[2]; \n\nRESULT.setValue(nachname + ' ' + vorname);"
         }
     ],
     "info": [

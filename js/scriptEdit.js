@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
-    var SCRIPT_EDIT_DATA;
+    let SCRIPT_EDIT_DATA;
+    let REGEX_TEST = false;
+    let CM_MARKERS = [];
 
     // init CodeMirror instances
     var myCodeMirrorJS = CodeMirror(document.querySelector('#myCodemirrorJS'), {
@@ -64,6 +66,11 @@ $(document).ready(function () {
         var sourceContent = getJSONData('email-adressen', 'code');;
         myCodeMirrorJS.setValue(sourceContent);
     });
+    $('#btnList1-5').on('click', function () {
+        var sourceContent = getJSONData('vorname-nachname', 'code');;
+        myCodeMirrorJS.setValue(sourceContent);
+    });
+
 
     $('#btnList2-1').on('click', function () {
         myCodeMirrorData.setValue(getJSONData('Personen', 'text'));
@@ -75,6 +82,91 @@ $(document).ready(function () {
         myCodeMirrorData.setValue(getJSONData('EMAIL', 'text'));
     });
 
+
+    //button: RegEx Tester
+    $('#btnRegExTester').on('click', function () {
+        $('#txtRegExTester').focus();
+        REGEX_TEST = !REGEX_TEST;
+        //reset markers
+        CM_MARKERS.forEach(marker => marker.clear());
+        CM_MARKERS = [];
+    });
+    $('#txtRegExTester').on('input', function (event) {
+        CM_MARKERS.forEach(marker => marker.clear());
+        CM_MARKERS = [];
+        let inputValue = $('#txtRegExTester').val();
+        try {
+            // Create a regular expression from user input on every keyup
+            if (inputValue != "") {
+                let regexp = new RegExp(inputValue, FLAG_ARRAY.toString().replaceAll(",", ""));
+                search(regexp);
+            }
+        }
+        catch (err) {
+            // Highlight user input red 
+            $('#txtRegExTester').removeClass('valid-entry').addClass('invalid-entry');
+
+        }
+    });
+
+    //Check RegEx wenn Text eingegeben wird
+    myCodeMirrorData.on("change", function (cm, change) {
+        if (REGEX_TEST) {
+            CM_MARKERS.forEach(marker => marker.clear());
+            CM_MARKERS = [];
+            let inputValue = $('#txtRegExTester').val();
+            if (inputValue != "") {
+                let regexp = new RegExp(inputValue, FLAG_ARRAY.toString().replaceAll(",", ""));
+                search(regexp);
+            }
+        }
+    });
+
+    //function: Sucht im CodeMirror DATA nach einem String und gibt diesem die Klasse "highlight"
+    function search(val) {
+        var cursor = myCodeMirrorData.getSearchCursor(val);
+        //sucht nach val und speichert den erstellten Marker im CM_MARKERS Array -> solange der Array < 100 Einträge ist
+        while (cursor.findNext() && CM_MARKERS.length < 100) {
+            var tempMarker = myCodeMirrorData.markText(
+                cursor.from(),
+                cursor.to(),
+                { className: 'highlight' }
+            );
+            CM_MARKERS.push(tempMarker);
+        }
+    }
+
+    // RegEx Flags 
+    let FLAG_ARRAY = ["g"];
+    $(".dropdown-flags .dropdown-item").on('click', function (e) {
+        e.stopPropagation();
+    });
+    $(".checkbox-flag").click(function () {
+        let tempCheckboxValue = $(this).val();
+        if (!isCheckboxChecked(this)) {
+            let indexToRemove = FLAG_ARRAY.indexOf(tempCheckboxValue);
+            FLAG_ARRAY.splice(indexToRemove, 1);
+            createFlagButtonName();
+        } else {
+            FLAG_ARRAY.push(tempCheckboxValue);
+            createFlagButtonName();
+        }
+        //update editor with current regex search
+        CM_MARKERS.forEach(marker => marker.clear());
+        CM_MARKERS = [];
+        let inputValue = $('#txtRegExTester').val();
+        if (inputValue != "") {
+            let regexp = new RegExp(inputValue, FLAG_ARRAY.toString().replaceAll(",", ""));
+            search(regexp);
+        }
+    });
+    function isCheckboxChecked(tempCheckbox) {
+        if ($(tempCheckbox).prop("checked")) return true;
+        else return false;
+    }
+    function createFlagButtonName() {
+        $(".dropdown-flags-button").html("/" + FLAG_ARRAY.toString().replaceAll(",", ""));
+    }
 
 
 

@@ -45,14 +45,70 @@
                     </div>
 
                     <div style="position: relative;">
-                        <button id="btnRunCode" type="button" class="btn btn-success"
+                        <button id="btnRunCode" type="button" class="btn btn-success shadow-none"
                             style="position: absolute; right: 1em; z-index: 10;">run</button>
                     </div>
                     <div id="myCodemirrorJS" style="height: 90%;"></div>
                 </div>
                 <!-- Codemirror for data -->
                 <div class="row" style="height: 50%;">
-                    <p class="font-monospace fw-bold fs-5" style="height: 5%; margin-bottom: 0;">DATA</p>
+                    <div style="height: 5%; margin-bottom: 0; display: inline;">
+                        <span class="font-monospace fw-bold fs-5">DATA&nbsp;&nbsp;&nbsp;</span>
+                        <span id="btnRegExTester" class="font-monospace " data-bs-toggle="collapse"
+                            href="#collapseExample" style="cursor: pointer; color: #0d6efd; user-select: none;">RegEx
+                            Tester</span>
+
+                    </div>
+                    <div class="collapse" id="collapseExample" style="margin-top: 1em;">
+                        <div class="card card-body">
+                            <div class="input-group mb-0">
+
+                                <span class="input-group-text" id="basic-addon1"
+                                    style=" background-color: white;">/</span>
+
+                                <input id="txtRegExTester" type="text" class="form-control shadow-none"
+                                    placeholder="Text oder RegEx z.B. [A-Z]" aria-describedby="basic-addon1">
+
+                                <!-- RegEx Flags Dropdown -->
+                                <button class="btn btn-outline-secondary dropdown-toggle dropdown-flags-button shadow-none" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">/g</button>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-flags shadow-none">
+                                    <li>
+                                        <span class="dropdown-item">
+                                            <input class="form-check-input shadow-none checkbox-flag" type="checkbox" value="g"
+                                                id="flag-g" checked>
+                                            <label class="form-check-label" for="flag-g">
+                                                <span class="fw-bold" style="color: #0d6efd;">g</span>lobal
+                                            </label>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdown-item">
+                                            <input class="form-check-input shadow-none checkbox-flag" type="checkbox" value="i"
+                                                id="flag-i">
+                                            <label class="form-check-label" for="flag-i">
+                                                <span class="fw-bold" style="color: #0d6efd;">i</span>nsensitive
+                                            </label>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdown-item">
+                                            <input class="form-check-input shadow-none checkbox-flag" type="checkbox" value="m"
+                                                id="flag-m">
+                                            <label class="form-check-label" for="flag-m">
+                                                <span class="fw-bold" style="color: #0d6efd;">m</span>ulti line
+                                            </label>
+                                        </span>
+                                    </li>
+
+                                </ul>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
                     <div id="myCodemirrorData" style="height: 90%;"></div>
                 </div>
             </div>
@@ -85,6 +141,10 @@
                                     <button type="button" id="btnList1-4" class="list-group-item list-group-item-action"
                                         aria-current="true">
                                         E-Mail Adressen
+                                    </button>
+                                    <button type="button" id="btnList1-5" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        Vorname und Nachname
                                     </button>
                                 </div>
                             </div>
@@ -140,6 +200,8 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.44.0/addon/search/searchcursor.min.js"></script>
+
     <script src="js/beautifier.js"></script>
 
     <script type="text/javascript" src="js/scriptEdit.js"></script>
