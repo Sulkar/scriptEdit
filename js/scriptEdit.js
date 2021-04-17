@@ -70,6 +70,10 @@ $(document).ready(function () {
         var sourceContent = getJSONData('vorname-nachname', 'code');;
         myCodeMirrorJS.setValue(sourceContent);
     });
+    $('#btnList1-6').on('click', function () {
+        var sourceContent = getJSONData('sql-filtern', 'code');;
+        myCodeMirrorJS.setValue(sourceContent);
+    });
 
 
     $('#btnList2-1').on('click', function () {

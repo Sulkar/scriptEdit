@@ -33,12 +33,16 @@
         {
             "name": "vorname-nachname",
             "data": "/*Vorname und Nachname filtern*/\n// [\\wöäü] = ein Wort [a-zA-Z] und Umlaute\n// /i = case insensitive\n\nvar ganzerName = 'Maximilian Wölfl';\n//gibt einen Array mit [ganzerName, Zeilenanfang, Vorname] zurück\nvar vorname = ganzerName.match(/(^)([\\wöäü]+)/i)[2];\n//gibt einen Array mit [ganzerName, Leerzeichen, Nachname] zurück\nvar nachname = ganzerName.match(/(\\s)([\\wöäü]+)/i)[2]; \n\nRESULT.setValue(nachname + ' ' + vorname);"
+        },
+        {
+            "name": "sql-filtern",
+            "data": "/* SQL Create Query filtern\nbenötigt Beispieldaten: SQL Befehl */\n\nvar primaryKeyColumn = DATA.match(/(PRIMARY KEY\\(\")(\\w+)/)[2];\nvar foreignKeyColumn = DATA.match(/(FOREIGN KEY\\(\")(\\w+)/)[2];\nvar foreignKeyTableReference = DATA.match(/(REFERENCES \")(\\w+)/)[2];\nvar foreignKeyTableReferenceColumn = DATA.match(/(REFERENCES \")(\\w+)(\"\\(\")(\\w+)/)[4];\n\nvar result = '';\nresult += 'primaryKeyColumn: ' +  primaryKeyColumn + '\\n';\nresult += 'foreignKeyColumn: ' +  foreignKeyColumn + '\\n';\nresult += 'foreignKeyTableReference: ' +  foreignKeyTableReference + '\\n';\nresult += 'foreignKeyTableReferenceColumn: ' +  foreignKeyTableReferenceColumn + '\\n';\nRESULT.setValue(result);\n"
         }
     ],
     "info": [
         {
             "name": "suchen-ersetzen",
-            "data": "Auch RegExp Ausdrücke kann man in Javascript nutzen:<br><span class='fw-bold'>.replaceAll(/^/g, 'neu')</span> :findet den Anfang eines Textes<br><span class='fw-bold'>.replaceAll(/$/g, 'neu')</span> :findet das Ende eines Textes"
+            "data": "Auch RegExp Ausdrücke kann man in Javascript nutzen.<br>Weitere Infos: <a href='https://regexr.com/' target='_blank'>regexr.com</a>"
         }
     ]
 }
