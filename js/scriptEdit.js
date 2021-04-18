@@ -74,6 +74,18 @@ $(document).ready(function () {
         var sourceContent = getJSONData('sql-filtern', 'code');;
         myCodeMirrorJS.setValue(sourceContent);
     });
+    $('#btnList1-7').on('click', function () {
+        var sourceContent = getJSONData('vorname-anzahl-sortieren', 'code');;
+        var beautified = js_beautify(sourceContent);
+        myCodeMirrorJS.setValue(beautified);
+    });
+    $('#btnList1-8').on('click', function () {
+        var sourceContent = getJSONData('liste-sortieren-zufall', 'code');;
+        var beautified = js_beautify(sourceContent);
+        myCodeMirrorJS.setValue(beautified);
+        $("#myInfo").html(getJSONData('fisher-yates-verfahren', 'info'));
+    });
+
 
 
     $('#btnList2-1').on('click', function () {
@@ -84,6 +96,14 @@ $(document).ready(function () {
     });
     $('#btnList2-3').on('click', function () {
         myCodeMirrorData.setValue(getJSONData('EMAIL', 'text'));
+    });
+    $('#btnList2-4').on('click', function () {
+        myCodeMirrorData.setValue(getJSONData('nachnamen-1000', 'text'));
+        $("#myInfo").html(getJSONData('nachnamen-1000', 'info'));
+    });
+    $('#btnList2-5').on('click', function () {
+        myCodeMirrorData.setValue(getJSONData('vornamen-1000', 'text'));
+        $("#myInfo").html(getJSONData('vornamen-1000', 'info'));
     });
 
 
