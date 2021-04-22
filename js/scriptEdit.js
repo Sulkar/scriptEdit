@@ -85,6 +85,11 @@ $(document).ready(function () {
         myCodeMirrorJS.setValue(beautified);
         $("#myInfo").html(getJSONData('fisher-yates-verfahren', 'info'));
     });
+    $('#btnList1-9').on('click', function () {
+        var sourceContent = getJSONData('sql-insert-befehl', 'code');;
+        var beautified = js_beautify(sourceContent);
+        myCodeMirrorJS.setValue(beautified);
+    });
 
 
 
