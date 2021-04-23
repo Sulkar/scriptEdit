@@ -28,7 +28,7 @@
         },
         {
             "name": "daten-liste",
-            "data": "/*Daten in Liste umwandeln\nbenötigt Beispieldaten: Personen*/\nvar DATA_Array = DATA.split('\\n'); //trennt den Text nach einem Zeilenumbruch\nvar newData = '';DATA_Array.forEach(element =>{\nnewData += element + ',\\n'; //fügt anstatt des Zeilenumbruchs ein , ein\n});\nRESULT.setValue(newData);"
+            "data": "/*Manipulation von Listen\nbenötigt Beispieldaten: Personen*/\nvar DATA_Array = DATA.split('\\n');\n\nvar trenner = ', ';\nfunction wrap(element, wrapping){\n  return wrapping + element + wrapping;\n}\n\nvar newData = '';\nDATA_Array.forEach(element => {\n let lineArray = element.split(/\\s/); //teilt die Zeile anhand eines Leerzeichens\n newData += '(';\n newData += wrap(lineArray[0], '\"') + trenner;\n newData += wrap(lineArray[1], '\"') + trenner;\n newData += wrap(lineArray[2], '\"') + trenner;\n newData += wrap(lineArray[3], '') ;\n /*newData += wrap(lineArray[4], '\"') + trenner;\n newData += wrap(lineArray[5], '\"') + trenner;\n newData += wrap(lineArray[6], '') + trenner;\n newData += wrap(lineArray[7], '\"');*/\n newData += ')';\n newData += '\\n';\n});\n\nRESULT.setValue(newData);"
         },
         {
             "name": "zahlen-liste",
@@ -53,11 +53,8 @@
         {
             "name": "liste-sortieren-zufall",
             "data": "/* Sortiert eine Liste zufällig\nbenötigt einen Array z.B.: 1000 häufigsten Nachnamen */\nvar DATA_Array = DATA.split('\\n'); //trennt den Text nach einem Zeilenumbruch\nvar newData = '';\n\n//Nach dem Fisher-Yates-Verfahren\nfor (i = DATA_Array.length -1; i > 0; i--) {\n  j = Math.floor(Math.random() * i);\n  k = DATA_Array[i];\n  DATA_Array[i] = DATA_Array[j];\n  DATA_Array[j] = k;\n}\n\nDATA_Array.forEach(element => {\n    newData += element + '\\n'; //fügt nach jedem Element des Arrays einen Zeilenumbruch hinzu\n});\nRESULT.setValue(newData);"
-        },
-        {
-            "name": "sql-insert-befehl",
-            "data": "/*Erstellt aus Personen einen SQL INSERT Befehl, der eine Datenbank befüllen kann\nbenötigt Beispieldaten: Personen*/\nvar DATA_Array = DATA.split('\\n');\nvar newData = '';\nnewData += 'INSERT INTO lehrer (vorname, nachname, geburtsdatum, besoldung, klasse_id) VALUES\\n';\nDATA_Array.forEach(element => {\n  //z.B.: Maximilian Wolf 2014-07-04 1\n  newData += '(\"' + element.match(/(^[\\wöüä]+)/i)[1] + '\", '; // (\"Maximilian\",\n  newData += '\"' + element.match(/( )([\\wöüä]+)/i)[2] + '\", '; // \"Wolf\",   \n  newData += '\"' + element.match(/([\\d-]+)/i)[1] + '\",'; // \"2014-07-04\",\n  newData += ' \"A 12\",'; // \"A 12\",\n  newData += ' ' + element.match(/([\\d]+$)/i)[1] + '),'; // 1)\n  newData += '\\n'; \n});\nRESULT.setValue(newData);"
         }
+        
     ],
     "info": [
         {
