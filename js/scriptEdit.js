@@ -3,6 +3,7 @@ $(document).ready(function () {
     let SCRIPT_EDIT_DATA;
     let REGEX_TEST = false;
     let CM_MARKERS = [];
+    let CHANGED = false;
 
     // init CodeMirror instances
     var myCodeMirrorJS = CodeMirror(document.querySelector('#myCodemirrorJS'), {
@@ -24,10 +25,25 @@ $(document).ready(function () {
         mode: 'text/html'
     });
 
+    let localStorageCode = localStorage.getItem("currentCodeInput");
+    if (localStorageCode != null) myCodeMirrorJS.setValue(localStorageCode);
+
+
+    window.onbeforeunload = function () {
+        if (CHANGED) {
+            return "";
+        }
+    }
+
+
+
     // EVENTS //
     $('#btnRunCode').on('click', function () {
         $('#myError').hide();
         var currentCodeInput = myCodeMirrorJS.getValue();
+        // Store
+        localStorage.setItem("currentCodeInput", currentCodeInput);
+
         var DATA = myCodeMirrorData.getValue();
         var RESULT = myCodeMirrorResult;
         var currentCodeInputString = currentCodeInput.replaceAll(/(?<=RESULT.setValue\(.+)\);/g, ".toString());");
@@ -139,7 +155,8 @@ $(document).ready(function () {
     });
 
     //Check RegEx wenn Text eingegeben wird
-    myCodeMirrorData.on("change", function (cm, change) {
+    myCodeMirrorData.on("change", function () {
+        CHANGED = true;
         if (REGEX_TEST) {
             CM_MARKERS.forEach(marker => marker.clear());
             CM_MARKERS = [];
@@ -149,6 +166,9 @@ $(document).ready(function () {
                 search(regexp);
             }
         }
+    });
+    myCodeMirrorJS.on("change", function () {
+        CHANGED = true;
     });
 
     //function: Sucht im CodeMirror DATA nach einem String und gibt diesem die Klasse "highlight"
@@ -241,11 +261,5 @@ $(document).ready(function () {
     };
     xmlhttp.open("GET", "data/scriptEditData.json", true);
     xmlhttp.send();
-
-    //function log
-    function log(info, tempValue) {
-        console.log(info);
-        if (tempValue != undefined) console.log("-> " + tempValue);
-    }
 
 });
