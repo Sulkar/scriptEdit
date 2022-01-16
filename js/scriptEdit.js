@@ -102,11 +102,11 @@ $(document).ready(function () {
         $("#myInfo").html(getJSONData('fisher-yates-verfahren', 'info'));
     });
     $('#btnList1-9').on('click', function () {
-        var sourceContent = getJSONData('sql-insert-befehl', 'code');;
+        var sourceContent = getJSONData('duplikate-loeschen', 'code');;
         var beautified = js_beautify(sourceContent);
         myCodeMirrorJS.setValue(beautified);
     });
-
+    
 
 
     $('#btnList2-1').on('click', function () {

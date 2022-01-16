@@ -53,6 +53,10 @@
         {
             "name": "liste-sortieren-zufall",
             "data": "/* Sortiert eine Liste zufällig\nbenötigt einen Array z.B.: 1000 häufigsten Nachnamen */\nvar DATA_Array = DATA.split('\\n'); //trennt den Text nach einem Zeilenumbruch\nvar newData = '';\n\n//Nach dem Fisher-Yates-Verfahren\nfor (i = DATA_Array.length -1; i > 0; i--) {\n  j = Math.floor(Math.random() * i);\n  k = DATA_Array[i];\n  DATA_Array[i] = DATA_Array[j];\n  DATA_Array[j] = k;\n}\n\nDATA_Array.forEach(element => {\n    newData += element + '\\n'; //fügt nach jedem Element des Arrays einen Zeilenumbruch hinzu\n});\nRESULT.setValue(newData);"
+        },
+        {
+            "name": "duplikate-loeschen",
+            "data": "/*löscht Duplikate aus einer Liste*/\nvar DATA_Array = DATA.split('\\n');\n//Duplikate entfernen\nlet DATA_Array_unique = [...new Set(DATA_Array)];\n\nRESULT.setValue(DATA_Array_unique.join('\\r\\n'));"
         }
         
     ],
