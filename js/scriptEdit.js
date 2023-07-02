@@ -25,9 +25,11 @@ $(document).ready(function () {
         mode: 'text/html'
     });
 
+
     let localStorageCode = localStorage.getItem("currentCodeInput");
     if (localStorageCode != null) myCodeMirrorJS.setValue(localStorageCode);
 
+    
 
     window.onbeforeunload = function () {
         if (CHANGED) {
@@ -63,50 +65,78 @@ $(document).ready(function () {
         myCodeMirrorJS.redo();
     });
 
+    function setActiveListItem(listItemId) {
+        document.querySelectorAll("button").forEach(btn => {
+            btn.classList.remove("active");
+        });
+        document.querySelector(listItemId).classList.add("active");
+    }
+
     $('#btnList1-1').on('click', function () {
         var sourceContent = getJSONData('suchen-ersetzen', 'code');
         myCodeMirrorJS.setValue(sourceContent);
         $("#myInfo").html(getJSONData('suchen-ersetzen', 'info'));
+        setActiveListItem('#btnList1-1');
     });
     $('#btnList1-2').on('click', function () {
         var sourceContent = getJSONData('daten-liste', 'code');
         var beautified = js_beautify(sourceContent);
         myCodeMirrorJS.setValue(beautified);
+        setActiveListItem('#btnList1-2');
     });
     $('#btnList1-3').on('click', function () {
         var sourceContent = getJSONData('zahlen-liste', 'code');
         var beautified = js_beautify(sourceContent);
         myCodeMirrorJS.setValue(beautified);
+        setActiveListItem('#btnList1-3');
     });
     $('#btnList1-4').on('click', function () {
         var sourceContent = getJSONData('email-adressen', 'code');;
         myCodeMirrorJS.setValue(sourceContent);
+        setActiveListItem('#btnList1-4');
     });
     $('#btnList1-5').on('click', function () {
         var sourceContent = getJSONData('vorname-nachname', 'code');;
         myCodeMirrorJS.setValue(sourceContent);
+        setActiveListItem('#btnList1-5');
     });
     $('#btnList1-6').on('click', function () {
         var sourceContent = getJSONData('sql-filtern', 'code');;
         myCodeMirrorJS.setValue(sourceContent);
+        setActiveListItem('#btnList1-6');
     });
     $('#btnList1-7').on('click', function () {
         var sourceContent = getJSONData('vorname-anzahl-sortieren', 'code');;
         var beautified = js_beautify(sourceContent);
         myCodeMirrorJS.setValue(beautified);
+        setActiveListItem('#btnList1-7');
     });
     $('#btnList1-8').on('click', function () {
         var sourceContent = getJSONData('liste-sortieren-zufall', 'code');;
         var beautified = js_beautify(sourceContent);
         myCodeMirrorJS.setValue(beautified);
         $("#myInfo").html(getJSONData('fisher-yates-verfahren', 'info'));
+        setActiveListItem('#btnList1-8');
     });
     $('#btnList1-9').on('click', function () {
         var sourceContent = getJSONData('duplikate-loeschen', 'code');;
         var beautified = js_beautify(sourceContent);
         myCodeMirrorJS.setValue(beautified);
+        setActiveListItem('#btnList1-9');
     });
-    
+    $('#btnList1-10').on('click', function () {
+        var sourceContent = getJSONData('daten-sortieren', 'code');;
+        var beautified = js_beautify(sourceContent);
+        myCodeMirrorJS.setValue(beautified);
+        setActiveListItem('#btnList1-10');
+    });
+    $('#btnList1-11').on('click', function () {
+        var sourceContent = getJSONData('listen-vergleichen', 'code');;
+        var beautified = js_beautify(sourceContent);
+        myCodeMirrorJS.setValue(beautified);
+        setActiveListItem('#btnList1-11');
+    });
+
 
 
     $('#btnList2-1').on('click', function () {

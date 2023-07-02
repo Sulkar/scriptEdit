@@ -11,10 +11,8 @@
     <link rel="icon" type="image/png" href="images/favicon60x60.png" />
 
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
-    </link>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/codemirror.min.css">
     <link rel="stylesheet" href="css/scriptEdit.css">
 </head>
 
@@ -22,10 +20,10 @@
     <div class="container-fluid" style="height: 100%;">
 
         <!-- Header -->
-        <div class="row" style="height: 5%;">            
+        <div class="row" style="height: 5%;">
             <div class="col">
                 <span id="" style="font-size: 1em; float: right;"><a
-                    href="https://github.com/Sulkar/scriptEdit">GitHub</a> </span>
+                        href="https://github.com/Sulkar/scriptEdit">GitHub</a> </span>
                 <h4 class="font-monospace" id="headerSql" style="margin-top: 0.3em;">ScriptEdit</h4>
             </div>
         </div>
@@ -73,13 +71,14 @@
                                     placeholder="Text oder RegEx z.B. [A-Z]" aria-describedby="basic-addon1">
 
                                 <!-- RegEx Flags Dropdown -->
-                                <button class="btn btn-outline-secondary dropdown-toggle dropdown-flags-button shadow-none" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">/g</button>
+                                <button
+                                    class="btn btn-outline-secondary dropdown-toggle dropdown-flags-button shadow-none"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">/g</button>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-flags shadow-none">
                                     <li>
                                         <span class="dropdown-item">
-                                            <input class="form-check-input shadow-none checkbox-flag" type="checkbox" value="g"
-                                                id="flag-g" checked>
+                                            <input class="form-check-input shadow-none checkbox-flag" type="checkbox"
+                                                value="g" id="flag-g" checked>
                                             <label class="form-check-label" for="flag-g">
                                                 <span class="fw-bold" style="color: #0d6efd;">g</span>lobal
                                             </label>
@@ -87,8 +86,8 @@
                                     </li>
                                     <li>
                                         <span class="dropdown-item">
-                                            <input class="form-check-input shadow-none checkbox-flag" type="checkbox" value="i"
-                                                id="flag-i">
+                                            <input class="form-check-input shadow-none checkbox-flag" type="checkbox"
+                                                value="i" id="flag-i">
                                             <label class="form-check-label" for="flag-i">
                                                 <span class="fw-bold" style="color: #0d6efd;">i</span>nsensitive
                                             </label>
@@ -96,8 +95,8 @@
                                     </li>
                                     <li>
                                         <span class="dropdown-item">
-                                            <input class="form-check-input shadow-none checkbox-flag" type="checkbox" value="m"
-                                                id="flag-m">
+                                            <input class="form-check-input shadow-none checkbox-flag" type="checkbox"
+                                                value="m" id="flag-m">
                                             <label class="form-check-label" for="flag-m">
                                                 <span class="fw-bold" style="color: #0d6efd;">m</span>ulti line
                                             </label>
@@ -129,7 +128,7 @@
                             <p>ScriptEdit ist ein Javascript Editor, mit dem man Text manipulieren kann.</p>
                             <div class="col">
                                 <div class="list-group">
-                                    <button type="button" id="btnList1-1" class="list-group-item list-group-item-action"
+                                    <button type="button" id="btnList1-1" class="list-group-item list-group-item-action active"
                                         aria-current="true">
                                         suchen und ersetzen
                                     </button>
@@ -143,12 +142,12 @@
                                     </button>
                                     <button type="button" id="btnList1-4" class="list-group-item list-group-item-action"
                                         aria-current="true">
-                                        E-Mail Adressen 
+                                        E-Mail Adressen
                                     </button>
                                     <button type="button" id="btnList1-5" class="list-group-item list-group-item-action"
                                         aria-current="true">
                                         Vorname - Nachname tauschen
-                                    </button>                                   
+                                    </button>
                                     <button type="button" id="btnList1-6" class="list-group-item list-group-item-action"
                                         aria-current="true">
                                         SQL Befehl parsen
@@ -160,10 +159,18 @@
                                     <button type="button" id="btnList1-8" class="list-group-item list-group-item-action"
                                         aria-current="true">
                                         Liste zufällig sortieren
-                                    </button>                   
+                                    </button>
                                     <button type="button" id="btnList1-9" class="list-group-item list-group-item-action"
                                         aria-current="true">
                                         Duplikate löschen
+                                    </button>
+                                    <button type="button" id="btnList1-10" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        Daten sortieren
+                                    </button>
+                                    <button type="button" id="btnList1-11" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        Listen vergleichen
                                     </button>
                                 </div>
                             </div>
@@ -217,20 +224,13 @@
     </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/codemirror.min.js"></script>
+    <script type="text/javascript" src="/js/codemirror.javascript.js"></script>
+    <script type="text/javascript" src="/js/codemirror.search.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-        crossorigin="anonymous"></script>
-
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.44.0/addon/search/searchcursor.min.js"></script>
-
-    <script src="js/beautifier.js"></script>
-
+    <script type="text/javascript" src="js/beautifier.js"></script>
     <script type="text/javascript" src="js/scriptEdit.js"></script>
 
 
